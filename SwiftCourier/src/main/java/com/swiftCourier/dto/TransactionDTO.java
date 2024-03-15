@@ -1,5 +1,7 @@
 package com.swiftCourier.dto;
 
+import com.swiftCourier.entity.Transaction;
+
 public class TransactionDTO {
 
 	private Integer id;
@@ -97,6 +99,24 @@ public class TransactionDTO {
 		return "TransactionDTO [id=" + id + ", sender=" + sender + ", senderAddress=" + senderAddress + ", senderCity="
 				+ senderCity + ", receiver=" + receiver + ", receiverAddress=" + receiverAddress + ", receiverCity="
 				+ receiverCity + ", status=" + status + "]";
+	}
+
+	public static Transaction prepareTransactionEntity(TransactionDTO transactionDTO) {
+		// creating entity class obj and populating values coming from DTO class to
+		// store them on database
+		Transaction transactionEntity = new Transaction();
+
+		transactionEntity.setId(transactionDTO.getId());
+		transactionEntity.setReceiver(transactionDTO.getReceiver());
+		transactionEntity.setReceiverAddress(transactionDTO.getReceiverAddress());
+		transactionEntity.setReceiverCity(transactionDTO.getReceiverCity());
+		transactionEntity.setSender(transactionDTO.getSender());
+		transactionEntity.setSenderAddress(transactionDTO.getSenderAddress());
+		transactionEntity.setSenderCity(transactionDTO.getSenderCity());
+		transactionEntity.setStatus(transactionDTO.getStatus());
+
+		return transactionEntity;
+
 	}
 
 }

@@ -1,5 +1,7 @@
 package com.swiftCourier.entity;
 
+import com.swiftCourier.dto.TransactionDTO;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 
@@ -15,8 +17,8 @@ public class Transaction {
 	private String receiverAddress;
 	private String receiverCity;
 	private String status;
-	
-	public Transaction (){
+
+	public Transaction() {
 		super();
 	}
 
@@ -103,7 +105,23 @@ public class Transaction {
 				+ senderCity + ", receiver=" + receiver + ", receiverAddress=" + receiverAddress + ", receiverCity="
 				+ receiverCity + ", status=" + status + "]";
 	}
-	
-	
-	
+
+	public static TransactionDTO prepareTransactionDTO(Transaction transaction) {
+
+		//Creating transactionDTO obj to populate values we get from entity/db
+		TransactionDTO transactionDTO = new TransactionDTO();
+
+		transactionDTO.setId(transaction.getId());
+		transactionDTO.setReceiver(transaction.getReceiver());
+		transactionDTO.setReceiverAddress(transaction.getReceiverAddress());
+		transactionDTO.setReceiverCity(transaction.getReceiverCity());
+		transactionDTO.setSender(transaction.getSender());
+		transactionDTO.setSenderAddress(transaction.getSenderAddress());
+		transactionDTO.setSenderCity(transaction.getSenderCity());
+		transactionDTO.setStatus(transaction.getStatus());
+
+		return transactionDTO;
+
+	}
+
 }

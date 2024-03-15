@@ -1,5 +1,7 @@
 package com.swiftCourier.entity;
 
+import com.swiftCourier.dto.CustomerDTO;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 
@@ -12,10 +14,10 @@ public class Customer {
 	private String name;
 	private String city;
 	private String email;
-	
+
 	public Customer() {
 		super();
-		
+
 	}
 
 	public Customer(String userId, String password, String name, String city, String email) {
@@ -72,7 +74,19 @@ public class Customer {
 		return "Customer [userId=" + userId + ", password=" + password + ", name=" + name + ", city=" + city
 				+ ", email=" + email + "]";
 	}
-	
-	
-	
+
+	public static CustomerDTO prepareCustomerDTO(Customer customer) {
+		// creating one DTO object and populating values inside this obj which we got
+		// from entity class
+		CustomerDTO custDTO = new CustomerDTO();
+		custDTO.setName(customer.getName());
+		custDTO.setEmail(customer.getEmail());
+		custDTO.setCity(customer.getCity());
+		custDTO.setUserId(customer.getUserId());
+		custDTO.setPassword(customer.getPassword());
+
+		return custDTO;
+
+	}
+
 }
